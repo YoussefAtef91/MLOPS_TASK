@@ -3,15 +3,16 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OrdinalEncoder
 import pickle
+from hydra.utils import instantiate
 
-def preprocess_data(df):
+def preprocess_data(df, encoder_cfg, encoder_name):
     df = df.drop(["PassengerId","Name"], axis=1)
     df['Age'] = df['Age'].fillna(-1)
     df = df.fillna('Missing')
     cats = df.select_dtypes(include=["object"]).columns
-    encoder = OrdinalEncoder()
+    encoder = instantiate(encoder_cfg)
     df[cats] = encoder.fit_transform(df[cats])
-    with open(f"models/encoder.pkl", "wb") as f:
+    with open(f"models/{encoder_name}.pkl", "wb") as f:
         pickle.dump(encoder, f)
     X = df.drop("Survived", axis=1)
     y = df["Survived"]
