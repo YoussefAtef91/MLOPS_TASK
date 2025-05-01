@@ -31,3 +31,11 @@ def preprocess_data(df, encoder_name):
     np.save("data/processed/y_test.npy", y_test)
 
     return X_train, X_test, y_train, y_test
+
+
+if __name__ == "__main__":
+
+    df = pd.read_csv("data/raw/train.csv")
+    encoder_name = "encoder"
+
+    preprocess_data(df, encoder_name)
