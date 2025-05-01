@@ -1,0 +1,7 @@
+encoder_name: encoder
+
+model:
+  model_name: model
+  max_depth: 5
+  min_samples_leaf: 0.5
+  max_features: 0.5

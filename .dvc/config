@@ -1,4 +1,6 @@
 [core]
-    remote = myremote
+    remote = origin
 ['remote "myremote"']
     url = https://github.com/YoussefAtef91/MLOPS_TASK.git
+['remote "origin"']
+    url = https://dagshub.com/youssefatef007/MLOPS_TASK
