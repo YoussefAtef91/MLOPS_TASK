@@ -3,4 +3,7 @@
 ['remote "myremote"']
     url = https://github.com/YoussefAtef91/MLOPS_TASK.git
 ['remote "origin"']
-    url = https://dagshub.com/youssefatef007/MLOPS_TASK
+    url = https://dagshub.com/youssefatef007/MLOPS_TASK.dvc
+    auth = basic
+    user = youssefatef007
+    password = caeae1d1f090f62e0e294fd0447cb202279efca2
