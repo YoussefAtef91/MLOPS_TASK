@@ -1,0 +1,9 @@
+pipeline:
+  encoder:
+    _target_: sklearn.preprocessing.OrdinalEncoder
+  encoder_name: encoder_v2
+  model:
+    model_name: model_v2
+    max_depth: 10
+    min_samples_leaf: 0.7
+    max_features: 0.6

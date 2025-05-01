@@ -13,11 +13,11 @@ def main(cfg: DictConfig):
     
     X_train, X_test, y_train, y_test = preprocess_data(
         df,
-        encoder_cfg=cfg.encoder,
-        encoder_name=cfg.encoder_name
+        encoder_cfg=cfg.pipeline.encoder,
+        encoder_name=cfg.pipeline.encoder_name
     )
     
-    model = train_data(X_train, y_train,cfg.model)
+    model = train_data(X_train, y_train,cfg.pipeline.model)
     print(evaluate(X_test, y_test, model))
 
 if __name__ == "__main__":

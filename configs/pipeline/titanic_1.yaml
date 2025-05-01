@@ -1,0 +1,10 @@
+encoder:
+  _target_: sklearn.preprocessing.OrdinalEncoder
+
+encoder_name: encoder_v1
+
+model:
+  model_name: model_v1
+  max_depth: 5
+  min_samples_leaf: 0.5
+  max_features: 0.5
