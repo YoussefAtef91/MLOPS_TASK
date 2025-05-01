@@ -1,0 +1,82 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: uv run python src/training/preprocess.py
+    deps:
+    - path: data/raw/train.csv
+      hash: md5
+      md5: 2309cc5f04782ed9bb6016d9f4e381cf
+      size: 61194
+    - path: src/training/preprocess.py
+      hash: md5
+      md5: 5db2573874eb822c3fcf3ba3b3426953
+      size: 1158
+    params:
+      params.yaml:
+        encoder_name: encoder
+    outs:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 7095e65af9d43c0cee7aee48b4556c8f
+      size: 11206
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: 527134170df4495d5a8afbbfd71c1a29
+      size: 22502
+    - path: data/processed/y_test.npy
+      hash: md5
+      md5: 7a8b2d1186d14673c17f6c7cc2a9d719
+      size: 2488
+    - path: data/processed/y_train.npy
+      hash: md5
+      md5: c7efa41e7842f2fcc75912d7af22a20b
+      size: 4896
+    - path: models/encoder.pkl
+      hash: md5
+      md5: 849048f9604c16bb2d44ae06be8675e2
+      size: 8325
+  train:
+    cmd: uv run python src/training/train.py
+    deps:
+    - path: data/processed/X_train.csv
+      hash: md5
+      md5: 527134170df4495d5a8afbbfd71c1a29
+      size: 22502
+    - path: data/processed/y_train.npy
+      hash: md5
+      md5: c7efa41e7842f2fcc75912d7af22a20b
+      size: 4896
+    - path: src/training/train.py
+      hash: md5
+      md5: 5e73782b4bfeeedd69163444ed641e4e
+      size: 869
+    params:
+      params.yaml:
+        model.max_depth: 5
+        model.max_features: 0.5
+        model.min_samples_leaf: 0.5
+        model.model_name: model
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 8bd4a2066094e8c128c3a8542e875040
+      size: 1356
+  evaluate:
+    cmd: uv run python src/training/evaluate.py
+    deps:
+    - path: data/processed/X_test.csv
+      hash: md5
+      md5: 7095e65af9d43c0cee7aee48b4556c8f
+      size: 11206
+    - path: data/processed/y_test.npy
+      hash: md5
+      md5: 7a8b2d1186d14673c17f6c7cc2a9d719
+      size: 2488
+    - path: models/model.pkl
+      hash: md5
+      md5: 8bd4a2066094e8c128c3a8542e875040
+      size: 1356
+    - path: src/training/evaluate.py
+      hash: md5
+      md5: 879d7c8f0461288aefae2311502521c7
+      size: 518

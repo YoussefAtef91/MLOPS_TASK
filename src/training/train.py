@@ -16,3 +16,17 @@ def train_data(X_train, y_train, model_params):
         pickle.dump(model, f)
 
     return model
+
+
+if __name__ == "__main__":
+    X_train = pd.read_csv("data/processed/X_train.csv")
+    y_train = np.load("data/processed/y_train.npy")
+
+    model_params = {
+        "model_name": "model",
+        "max_depth": 5,
+        "min_samples_leaf": 2,
+        "max_features": 0.5
+    }
+
+    train_data(X_train, y_train, model_params)

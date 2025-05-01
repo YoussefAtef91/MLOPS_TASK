@@ -1,9 +1,9 @@
 stages:
   preprocess:
-    cmd: uv run python preprocess.py
+    cmd: uv run python src/training/preprocess.py
     deps:
       - data/raw/train.csv
-      - src/preprocess.py
+      - src/training/preprocess.py
     outs:
       - data/processed/X_train.csv
       - data/processed/X_test.csv
@@ -14,11 +14,11 @@ stages:
       - encoder_name
 
   train:
-    cmd: uv run python train.py
+    cmd: uv run python src/training/train.py
     deps:
       - data/processed/X_train.csv
       - data/processed/y_train.npy
-      - src/train.py
+      - src/training/train.py
     outs:
       - models/model.pkl
     params:
@@ -28,9 +28,9 @@ stages:
       - model.max_features
 
   evaluate:
-    cmd: uv run python evaluate.py
+    cmd: uv run python src/training/evaluate.py
     deps:
       - data/processed/X_test.csv
       - data/processed/y_test.npy
       - models/model.pkl
-      - src/evaluate.py
+      - src/training/evaluate.py
